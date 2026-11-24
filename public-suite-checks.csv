@@ -1,0 +1,4 @@
+suite,unique_tasks,passed_first,passed_after_repair,first_pass_postfirst_tokens,first_pass_decode_seconds,first_pass_decode_tps
+humanevalplus,164,147,149,29662,84.59375886092312,350.64052477873685
+mbppplus,378,275,281,29745,93.93149134698615,316.66696198957334
+bird-minidev-sqlite,500,79,105,70672,286.1518526460859,246.9737635681412

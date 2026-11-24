@@ -11,9 +11,17 @@ COPY = {"swift_edit"}
 SELECTED = {"rewrite"}
 
 def sample(run, cohorts, blocks, arm):
-    return {(r["block"], r["case"], r["rep"]): r for r in rows
-            if r["run"] == run and r["arm"] == arm
-            and int(r["block"]) <= blocks and r["cohort"] in cohorts}
+    selected = {}
+    for row in rows:
+        if row["run"] != run or row["arm"] != arm or row["cohort"] not in cohorts:
+            continue
+        if int(row["block"]) > blocks:
+            continue
+        key = (row["block"], row["case"], row["rep"])
+        if key in selected:
+            raise ValueError(f"Duplicate request {key} for {run}/{arm}")
+        selected[key] = row
+    return selected
 
 def stats(records):
     values = list(records.values())
